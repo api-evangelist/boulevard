@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boulevard API",
+    "version": "2020-01"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{apiKey}}"
+    },
+    "headers": [
+      { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+    ]
+  },
+  "items": [
+    {
+      "info": { "name": "Admin API - Clients & CRM", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get client by ID", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "query GetClient($id: ID!) {\n  client(id: $id) {\n    id\n    firstName\n    lastName\n    email\n    phone\n    loyaltyPointsBalance\n    customFields { key value }\n  }\n}",
+            "variables": "{\"id\": \"{{clientId}}\"}"
+          },
+          "docs": "Confirmed public API reference path: graphql-admin-api/api-reference/queries/client."
+        },
+        {
+          "info": { "name": "List clients updated since", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "query ListClients($updatedSince: DateTime, $first: Int) {\n  clients(updatedSince: $updatedSince, first: $first) {\n    id\n    firstName\n    lastName\n    email\n    updatedAt\n  }\n}",
+            "variables": "{\"updatedSince\": \"2026-06-01T00:00:00Z\", \"first\": 50}"
+          },
+          "docs": "Incremental client sync for CRM/marketing integrations."
+        },
+        {
+          "info": { "name": "updateClient mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "mutation UpdateClient($input: UpdateClientInput!) {\n  updateClient(input: $input) {\n    id\n    customFields { key value }\n  }\n}",
+            "variables": "{\"input\": {\"clientId\": \"{{clientId}}\", \"customFields\": [{\"key\": \"loyalty_points\", \"value\": 250}]}}"
+          },
+          "docs": "Confirmed mutation name per Extole's Boulevard integration guide - writes loyalty/referral custom-field state back into Boulevard."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Admin API - Appointments, Staff & Locations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List appointments for a location", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "query ListAppointments($locationId: ID, $status: AppointmentStatus, $since: DateTime) {\n  appointments(locationId: $locationId, status: $status, since: $since) {\n    id\n    status\n    startAt\n    endAt\n    client { id firstName lastName }\n    staff { id displayName }\n  }\n}",
+            "variables": "{\"locationId\": \"{{locationId}}\", \"status\": \"CONFIRMED\", \"since\": \"2026-07-01T00:00:00Z\"}"
+          },
+          "docs": "Backs webhook-driven integrations reacting to APPOINTMENT_CREATED / APPOINTMENT_CONFIRMED / APPOINTMENT_COMPLETED events."
+        },
+        {
+          "info": { "name": "List locations and staff", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "query ListLocations {\n  locations {\n    id\n    name\n    timezone\n    staff { id displayName bookable }\n  }\n}",
+            "variables": "{}"
+          },
+          "docs": "Full location and staff roster for a business."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Admin API - Memberships & Packages", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List active memberships for a client", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "query ListMemberships($clientId: ID, $status: MembershipStatus) {\n  memberships(clientId: $clientId, status: $status) {\n    id\n    planName\n    status\n    renewsAt\n    entitlements { service { name } remainingUses }\n  }\n}",
+            "variables": "{\"clientId\": \"{{clientId}}\", \"status\": \"ACTIVE\"}"
+          },
+          "docs": "Membership lifecycle also pushed outbound as MEMBERSHIP_CREATED / MEMBERSHIP_CANCELLED / MEMBERSHIP_RENEWAL_SUCCEEDED webhooks."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Admin API - Payments, Gift Cards & Vouchers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "CreateGiftCard mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "mutation CreateGiftCard($input: CreateGiftCardInput!) {\n  createGiftCard(input: $input) {\n    id\n    code\n    currentBalance\n    status\n  }\n}",
+            "variables": "{\"input\": {\"locationId\": \"{{locationId}}\", \"clientId\": \"{{clientId}}\", \"amount\": 50.00}}"
+          },
+          "docs": "Confirmed mutation name per Extole's Boulevard integration guide."
+        },
+        {
+          "info": { "name": "createAccountCreditAdjustment mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "mutation AdjustAccountCredit($input: CreateAccountCreditAdjustmentInput!) {\n  createAccountCreditAdjustment(input: $input) {\n    id\n    resultingBalance\n    adjustmentReason\n  }\n}",
+            "variables": "{\"input\": {\"clientId\": \"{{clientId}}\", \"locationId\": \"{{locationId}}\", \"adjustmentReason\": \"REFERRAL_REWARD\", \"balanceDelta\": 10.00}}"
+          },
+          "docs": "Confirmed mutation name per Extole's Boulevard integration guide."
+        },
+        {
+          "info": { "name": "vouchersCreate mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/admin",
+            "query": "mutation CreateVouchers($input: VouchersCreateInput!) {\n  vouchersCreate(input: $input) {\n    id\n    status\n    expiresAt\n  }\n}",
+            "variables": "{\"input\": {\"clientId\": \"{{clientId}}\", \"locationId\": \"{{locationId}}\", \"serviceIds\": [\"{{serviceId}}\"], \"quantity\": 1}}"
+          },
+          "docs": "Confirmed mutation name per Extole's Boulevard integration guide."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Client API - Catalog & Availability", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get business and locations", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "query GetBusiness {\n  business {\n    id\n    name\n    locations { id name address { city state } }\n  }\n}",
+            "variables": "{}"
+          },
+          "docs": "Mirrors the book-sdk Businesses module."
+        },
+        {
+          "info": { "name": "List bookable service categories", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "query ListServiceCategories($locationId: ID!) {\n  serviceCategories(locationId: $locationId) {\n    id\n    name\n    services { id name durationMinutes priceStartingAt bookableOnline }\n  }\n}",
+            "variables": "{\"locationId\": \"{{locationId}}\"}"
+          },
+          "docs": "Mirrors the book-sdk Services module."
+        },
+        {
+          "info": { "name": "Get bookable dates for a cart", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "query GetBookableDates($cartId: ID!, $month: String!) {\n  bookableDates(cartId: $cartId, month: $month) {\n    date\n    hasAvailability\n  }\n}",
+            "variables": "{\"cartId\": \"{{cartId}}\", \"month\": \"2026-08\"}"
+          },
+          "docs": "Confirmed SDK method name: cart.getBookableDates()."
+        },
+        {
+          "info": { "name": "Get bookable times for a date", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "query GetBookableTimes($cartId: ID!, $date: String!) {\n  bookableTimes(cartId: $cartId, date: $date) {\n    startAt\n    staff { id displayName }\n  }\n}",
+            "variables": "{\"cartId\": \"{{cartId}}\", \"date\": \"2026-08-15\"}"
+          },
+          "docs": "Confirmed SDK method name: cart.getBookableTimes(date)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Client API - Booking Cart & Checkout", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "CreateCart mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "mutation CreateCart($input: CreateCartInput!) {\n  createCart(input: $input) {\n    id\n    status\n  }\n}",
+            "variables": "{\"input\": {\"locationId\": \"{{locationId}}\"}}"
+          },
+          "docs": "Confirmed mutation name, found in Boulevard/promotion-demo source (src/blvd.js)."
+        },
+        {
+          "info": { "name": "AddCartSelectedPurchasableItem mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "mutation AddCartItem($input: AddCartSelectedPurchasableItemInput!) {\n  addCartSelectedPurchasableItem(input: $input) {\n    id\n    items { id service { name } price }\n  }\n}",
+            "variables": "{\"input\": {\"cartId\": \"{{cartId}}\", \"itemId\": \"{{serviceId}}\"}}"
+          },
+          "docs": "Confirmed mutation name, found in Boulevard/promotion-demo source (src/blvd.js)."
+        },
+        {
+          "info": { "name": "reserveCartTimeslot mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "mutation ReserveTimeslot($input: ReserveCartTimeslotInput!) {\n  reserveCartTimeslot(input: $input) {\n    id\n    status\n    reservedStartAt\n  }\n}",
+            "variables": "{\"input\": {\"cartId\": \"{{cartId}}\", \"startAt\": \"2026-08-15T14:00:00Z\"}}"
+          },
+          "docs": "Modeled from the book-sdk method cart.reserve(timeslot); exact GraphQL mutation name not independently confirmed."
+        },
+        {
+          "info": { "name": "AddCartCardPaymentMethod mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "mutation AddCardPaymentMethod($input: AddCartCardPaymentMethodInput!) {\n  addCartCardPaymentMethod(input: $input) {\n    id\n    status\n  }\n}",
+            "variables": "{\"input\": {\"cartId\": \"{{cartId}}\", \"paymentToken\": \"{{paymentToken}}\"}}"
+          },
+          "docs": "Confirmed mutation name, found in Boulevard/promotion-demo source (src/blvd.js). Takes the token returned by the Tokenization API."
+        },
+        {
+          "info": { "name": "CheckoutCart mutation", "type": "graphql" },
+          "graphql": {
+            "url": "https://dashboard.boulevard.io/api/2020-01/client",
+            "query": "mutation CheckoutCart($input: CheckoutCartInput!) {\n  checkoutCart(input: $input) {\n    confirmationCode\n    appointment { id startAt status }\n  }\n}",
+            "variables": "{\"input\": {\"cartId\": \"{{cartId}}\"}}"
+          },
+          "docs": "Confirmed mutation name, found in Boulevard/promotion-demo source (src/blvd.js)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tokenization API", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Tokenize a card", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://vault.blvd.co/cards/tokenize",
+            "body": {
+              "type": "json",
+              "data": "{\"number\": \"4242424242424242\", \"expMonth\": 12, \"expYear\": 2028, \"cvc\": \"123\"}"
+            }
+          },
+          "docs": "Confirmed literal endpoint (this.tokenizeUrl) found in Boulevard/promotion-demo source. REST, not GraphQL. Returns a reusable token to pass into AddCartCardPaymentMethod, keeping raw card data out of the integrator's PCI scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,213 @@
+aid: boulevard
+url: https://raw.githubusercontent.com/api-evangelist/boulevard/refs/heads/main/apis.yml
+name: Boulevard
+kind: company
+description: Boulevard is a client experience platform purpose-built for appointment-based
+  self-care businesses - hair salons, spas, medspas, barbershops, and nail salons.
+  The platform covers self-scheduling, CRM, marketing, payments (as a certified
+  PayFac), and reporting. Boulevard exposes its integration surface as GraphQL -
+  a Client API for building custom booking experiences and an Admin API for syncing
+  business operations data (clients, appointments, staff, locations, memberships,
+  gift cards) - plus a separate Tokenization API for PCI-scope-reducing card capture.
+  API access is gated to the Enterprise tier and provisioned through a developer
+  sandbox (business ID + API key) via the Boulevard Developer Portal.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Salon Software
+- Spa Software
+- Med Spa
+- Appointment Scheduling
+- GraphQL
+- CRM
+- Payments
+- Self-Care
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: boulevard:boulevard-admin-clients-crm-api
+  name: Boulevard Admin API - Clients & CRM
+  tags:
+  - Clients
+  - CRM
+  - Custom Fields
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/admin-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/admin
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/admin-api/overview
+    type: Documentation
+  - url: https://developers.joinblvd.com/2020-01/admin-api/authentication
+    type: Documentation
+  - url: https://developers.joinblvd.com/graphql-admin-api/api-reference/types/Business
+    type: APIReference
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Query and mutate client (customer) records synced from Boulevard's
+    CRM - profiles, contact details, custom fields, loyalty point balances, and
+    appointment history. Third parties such as Klaviyo and Extole use this domain's
+    `updateClient` mutation to write loyalty and referral state back into Boulevard.
+- aid: boulevard:boulevard-admin-appointments-scheduling-api
+  name: Boulevard Admin API - Appointments, Staff & Locations
+  tags:
+  - Appointments
+  - Scheduling
+  - Staff
+  - Locations
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/admin-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/admin
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/admin-api/overview
+    type: Documentation
+  - url: https://developers.joinblvd.com/2020-01/admin-api/authentication
+    type: Documentation
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Read and sync appointment, staff, and location data across a business's
+    calendar - past, current, and future appointments, professional rosters, and
+    the physical/virtual locations services are delivered from. Backs webhook-driven
+    integrations that react to APPOINTMENT_CREATED, APPOINTMENT_CONFIRMED, and
+    APPOINTMENT_COMPLETED events.
+- aid: boulevard:boulevard-admin-memberships-packages-api
+  name: Boulevard Admin API - Memberships & Packages
+  tags:
+  - Memberships
+  - Packages
+  - Subscriptions
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/admin-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/admin
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/admin-api/overview
+    type: Documentation
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Access recurring membership and prepaid package data - plan status,
+    renewal state, and entitlements. Membership lifecycle changes are also pushed
+    outbound as MEMBERSHIP_CREATED, MEMBERSHIP_CANCELLED, and MEMBERSHIP_RENEWAL_SUCCEEDED
+    webhook events, which downstream tools like Klaviyo consume for lifecycle marketing.
+- aid: boulevard:boulevard-admin-payments-gift-cards-api
+  name: Boulevard Admin API - Payments, Gift Cards & Vouchers
+  tags:
+  - Payments
+  - Gift Cards
+  - Vouchers
+  - Account Credit
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/admin-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/admin
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/admin-api/overview
+    type: Documentation
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Issue and manage stored-value gift cards, service vouchers, and
+    account credit adjustments as a certified payment facilitator. Documented
+    mutations include `CreateGiftCard`, `vouchersCreate`, and `createAccountCreditAdjustment`,
+    used by referral/loyalty platforms (e.g. Extole) to fulfill rewards directly
+    inside a business's Boulevard account.
+- aid: boulevard:boulevard-client-booking-cart-api
+  name: Boulevard Client API - Booking Cart & Checkout
+  tags:
+  - Booking
+  - Cart
+  - Checkout
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/client-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/client
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/client-api/overview
+    type: Documentation
+  - url: https://developers.joinblvd.com/2020-01/client-api/authentication
+    type: Documentation
+  - url: https://github.com/Boulevard/book-sdk
+    type: SDK
+  - url: https://github.com/Boulevard/create-booking-flow
+    type: SDK
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Build custom, on-brand self-booking experiences on top of a cart
+    workflow - create a cart for a location, add a selected purchasable (service)
+    item, reserve an available timeslot, attach a tokenized card as the payment
+    method, and check out. Confirmed mutations from the official `book-sdk` and
+    `promotion-demo` reference clients include `CreateCart`, `AddCartSelectedPurchasableItem`,
+    `AddCartCardPaymentMethod`, and `CheckoutCart`.
+- aid: boulevard:boulevard-client-catalog-availability-api
+  name: Boulevard Client API - Catalog & Availability
+  tags:
+  - Services
+  - Staff
+  - Locations
+  - Availability
+  - GraphQL
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/client-api/overview
+  baseURL: https://dashboard.boulevard.io/api/2020-01/client
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/client-api/overview
+    type: Documentation
+  - url: https://github.com/Boulevard/book-sdk
+    type: SDK
+  - url: graphql/boulevard-graphql.md
+    type: GraphQL
+  - url: graphql/boulevard-schema.graphql
+    type: GraphQL
+  description: Public-facing catalog reads that power a booking widget before
+    a client ever creates a cart - business and location lookup, bookable service
+    categories, staff/professional listings, and bookable dates/times for a chosen
+    service and location. Mirrors the `book-sdk` modules `Businesses`, `Locations`,
+    `Services`, `Staff`, and the cart's `getBookableDates` / `getBookableTimes`
+    calls.
+- aid: boulevard:boulevard-tokenization-api
+  name: Boulevard Tokenization API
+  tags:
+  - Tokenization
+  - PCI Compliance
+  - Payments
+  - REST
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.joinblvd.com/2020-01/tokenization-api/overview
+  baseURL: https://vault.blvd.co
+  properties:
+  - url: https://developers.joinblvd.com/2020-01/tokenization-api/overview
+    type: Documentation
+  description: A narrow, non-GraphQL REST endpoint (`POST https://vault.blvd.co/cards/tokenize`,
+    confirmed in the public `promotion-demo` reference client's source) used to
+    exchange raw card details for a reusable payment token client-side, before
+    that token is attached to a cart via the Client API's `AddCartCardPaymentMethod`
+    mutation. Keeps merchant integrations out of PCI DSS scope by ensuring card
+    numbers never transit the integrator's own servers.
+common:
+- type: GitHubOrganization
+  url: https://github.com/Boulevard
+- type: LinkedIn
+  url: https://www.linkedin.com/company/boulevard
+- type: Website
+  url: https://www.joinblvd.com/
+- type: Documentation
+  url: https://developers.joinblvd.com/
+- type: Plans
+  url: plans/boulevard-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/boulevard-rate-limits.yml
+- type: FinOps
+  url: finops/boulevard-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

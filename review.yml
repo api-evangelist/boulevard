@@ -1,0 +1,127 @@
+aid: boulevard
+name: Boulevard
+review:
+  question: Does Boulevard expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Boulevard's confirmed integration
+    surfaces (the Admin API and Client API GraphQL endpoints, plus the
+    Tokenization REST endpoint) are request/response only - no GraphQL
+    subscription, WebSocket, or Server-Sent Events transport is documented
+    or referenced anywhere in Boulevard's public developer materials,
+    partner integration guides (Klaviyo, Extole), or the open-source
+    reference clients (book-sdk, promotion-demo, create-booking-flow).
+    Real-time notification from Boulevard is delivered exclusively via
+    outbound webhooks (server-to-server HTTP POST), which is a push
+    mechanism but not a persistent bidirectional connection, so it does
+    not warrant an AsyncAPI document under current scope.
+findings:
+  summary: |
+    Boulevard does not publish a documented public WebSocket API. Boulevard
+    exposes two GraphQL surfaces - an Admin API (business operations data)
+    at https://dashboard.boulevard.io/api/2020-01/admin and a Client API
+    (self-booking cart workflow) at https://dashboard.boulevard.io/api/2020-01/client
+    - plus a separate REST Tokenization endpoint at
+    https://vault.blvd.co/cards/tokenize. All three are confirmed to be
+    plain request/response HTTP. Boulevard's own GraphQL schema likely
+    supports the `subscription` root type in principle (the backend runs
+    on Elixir with Absinthe, the standard Elixir GraphQL toolkit, which
+    does support GraphQL subscriptions over WebSocket), but no subscription
+    operations, WebSocket endpoint, or `wss://` host are documented or
+    referenced anywhere in Boulevard's public developer materials. Every
+    confirmed real-time behavior (new client, appointment lifecycle,
+    membership lifecycle) is delivered as an outbound webhook - a
+    Boulevard-initiated HTTPS POST to a URL the integrator registers - not
+    a client-held WebSocket connection.
+  openAccess: |
+    Full field-level API reference documentation sits behind a login wall
+    at developers.joinblvd.com, which requires an existing Boulevard
+    Enterprise-tier account (same credentials as the business dashboard).
+    Public research for this entry relied on: (1) Boulevard's own public
+    marketing pages describing the Client/Admin/Tokenization API split,
+    (2) Boulevard's public GitHub organization, specifically the
+    `book-sdk` TypeScript SDK and the `promotion-demo` reference client,
+    whose committed source code contains the literal confirmed endpoint
+    URLs and mutation names cited throughout this entry, and (3) published
+    third-party integration guides (Klaviyo Help Center, Extole developer
+    docs) that document the webhook event names and Admin API mutations
+    they call.
+  transports:
+    - protocol: GraphQL over HTTPS
+      scheme: https
+      baseURL: https://dashboard.boulevard.io/api/2020-01/admin
+      documented: true
+      note: Admin API. Confirmed to exist and be GraphQL from Boulevard marketing copy and a public API-reference path (graphql-admin-api/api-reference/types/Business); exact base URL inferred from the confirmed Client API URL pattern (same host, same version segment, differing final path).
+    - protocol: GraphQL over HTTPS
+      scheme: https
+      baseURL: https://dashboard.boulevard.io/api/2020-01/client
+      documented: true
+      note: Client API. Base URL confirmed literally in the public Boulevard/promotion-demo repository's src/blvd.js (this.apiUrl).
+    - protocol: REST over HTTPS
+      scheme: https
+      baseURL: https://vault.blvd.co
+      documented: true
+      note: Tokenization API. Endpoint POST /cards/tokenize confirmed literally in the same promotion-demo source (this.tokenizeUrl).
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Boulevard-initiated HTTPS POST for event types including CLIENT_CREATED, APPOINTMENT_CREATED, APPOINTMENT_CONFIRMED, APPOINTMENT_COMPLETED, MEMBERSHIP_CREATED, MEMBERSHIP_CANCELLED, MEMBERSHIP_RENEWAL_SUCCEEDED (confirmed via Extole and Klaviyo integration documentation). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: GraphQL Subscription / WebSocket
+      scheme: wss
+      documented: false
+      note: No subscription operations or wss:// host are documented anywhere in Boulevard's public developer materials as of the review date, despite the Elixir/Absinthe backend being technically capable of it.
+  endpointsConfirmed:
+    - POST https://dashboard.boulevard.io/api/2020-01/client (GraphQL - CreateCart, AddCartSelectedPurchasableItem, AddCartCardPaymentMethod, CheckoutCart; confirmed in Boulevard/promotion-demo source)
+    - POST https://vault.blvd.co/cards/tokenize (REST tokenization; confirmed in Boulevard/promotion-demo source)
+  endpointsModeled:
+    - POST https://dashboard.boulevard.io/api/2020-01/admin (GraphQL Admin API; base URL inferred from confirmed Client API URL pattern, not independently verified against a live response)
+    - Full field-level schema in graphql/boulevard-schema.graphql (types/fields beyond the confirmed operation and object names listed under "Endpoint confidence" in graphql/boulevard-graphql.md are modeled for completeness)
+sources:
+  - url: https://www.joinblvd.com/features/api
+    type: Documentation
+    note: Describes the three API categories - Client API, Admin API, Tokenization API - and states API access is Enterprise-tier only.
+  - url: https://www.joinblvd.com/blog/all-about-APIs
+    type: Documentation
+    note: Blog post describing each API's purpose in plain language; no WebSocket mention.
+  - url: https://developers.joinblvd.com/2020-01/admin-api/overview
+    type: Documentation
+    note: Admin API overview path exists (title confirmed); full content behind Developer Portal login.
+  - url: https://developers.joinblvd.com/2020-01/client-api/overview
+    type: Documentation
+    note: Client API overview path exists (title confirmed); full content behind Developer Portal login.
+  - url: https://developers.joinblvd.com/2020-01/tokenization-api/overview
+    type: Documentation
+    note: Tokenization API overview path exists (title confirmed); full content behind Developer Portal login.
+  - url: https://developers.joinblvd.com/graphql-admin-api/api-reference/types/Business
+    type: APIReference
+    note: Public path confirms a generated GraphQL API reference exists for the Admin API's Business type; page content itself requires login.
+  - url: https://github.com/Boulevard/book-sdk
+    type: SourceCode
+    note: Official TypeScript booking SDK wrapping the Client API; documents Businesses/Carts/Services/Staff/Appointments/Clients/Locations modules and the cart workflow methods.
+  - url: https://github.com/Boulevard/promotion-demo
+    type: SourceCode
+    note: Reference Client API integration; src/blvd.js contains the literal confirmed apiUrl and tokenizeUrl values plus the CreateCart/AddCartSelectedPurchasableItem/AddCartCardPaymentMethod/CheckoutCart GraphQL mutations, all sent over plain HTTPS POST with no WebSocket.
+  - url: https://github.com/Boulevard/create-booking-flow
+    type: SourceCode
+    note: Next.js starter kit for Enterprise customers; requires dev-support@blvd.co for sandbox credentials; no WebSocket or subscription usage.
+  - url: https://docs.extole.com/docs/boulevard-blvd
+    type: Documentation
+    note: Third-party integration guide documenting confirmed Admin API mutations (CreateGiftCard, createAccountCreditAdjustment, vouchersCreate, updateClient) and webhook event names, all HTTPS request/response or webhook push - no WebSocket.
+  - url: https://help.klaviyo.com/hc/en-us/articles/16131320434459
+    type: Documentation
+    note: Third-party integration guide confirming Boulevard "Webhooks and APIs" (HTTP) power the Klaviyo sync; no WebSocket mentioned.
+  - url: https://github.com/Boulevard
+    type: SourceCode
+    note: Boulevard's public GitHub organization includes a forked absinthe repository (the Elixir GraphQL toolkit), consistent with a hand-built Elixir/Absinthe GraphQL backend.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or GraphQL subscription protocol surface is documented for
+    Boulevard. Real-time delivery is via outbound webhooks (HTTPS POST), a
+    push mechanism already representable as the `Webhook` type in the
+    modeled GraphQL schema rather than a distinct AsyncAPI transport
+    document. No AsyncAPI document was created.

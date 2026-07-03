@@ -1,0 +1,162 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Boulevard
+providerId: boulevard
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon Software
+- Spa Software
+- Med Spa
+- Appointment Scheduling
+- Plans
+description: >-
+  Boulevard sells its platform as a per-location monthly (or discounted annual)
+  subscription across three published self-serve tiers - Essentials, Premier,
+  and Prestige - plus a bespoke Enterprise tier. Published third-party pricing
+  research and Boulevard's own pricing page show slightly different numbers
+  for the same three tiers (likely reflecting a limited-time promotional
+  discount versus list price), so both are recorded here. API access (Client
+  API, Admin API, Tokenization API) is explicitly gated to the Enterprise
+  tier - it is not included in Essentials, Premier, or Prestige.
+notes: >-
+  Boulevard does not publish per-call or per-token API pricing; API access
+  itself is bundled into the negotiated Enterprise contract rather than
+  metered separately. Verify current tier pricing directly on the pricing
+  page before quoting, as promotional pricing appears to be in effect.
+sources:
+- https://www.joinblvd.com/pricing
+- https://www.joinblvd.com/features/api
+- https://www.joinblvd.com/enterprise
+- https://glossgenius.com/blog/boulevard-price
+- https://thesalonbusiness.com/boulevard-software-review/
+plans:
+- id: boulevard-essentials
+  name: Essentials
+  type: paid
+  description: >-
+    Entry-tier plan for a single location - self-booking, calendar, basic
+    marketing, and payments. Up to 5 professionals. No API access.
+  entries:
+  - label: Essentials (per location, monthly)
+    name: essentials_monthly
+    type: flat
+    metric: location
+    limit: 1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: "$140-$176 per month per location (promotional vs. list price observed)"
+    userMultiplied: false
+  elements:
+  - name: Self-Booking
+  - name: Calendar & Scheduling
+  - name: Up to 5 Professionals
+  - name: 100 Texts / 500 Email Blasts
+  - name: 25 GB Storage
+- id: boulevard-premier
+  name: Premier
+  type: paid
+  description: >-
+    Mid-tier plan adding unlimited professionals and expanded marketing
+    volume. No standard API access (Magic Tags / Zapier automation only).
+  entries:
+  - label: Premier (per location, monthly)
+    name: premier_monthly
+    type: flat
+    metric: location
+    limit: 1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: "$234-$293 per month per location (promotional vs. list price observed)"
+    userMultiplied: false
+  elements:
+  - name: Unlimited Professionals
+  - name: 250 Texts / 1,000 Email Blasts
+  - name: 50 GB Storage
+  - name: Magic Tags with Zapier Integration
+- id: boulevard-prestige
+  name: Prestige
+  type: paid
+  description: >-
+    Top published self-serve tier - adds custom forms and the largest
+    messaging/storage allotments. No standard API access.
+  entries:
+  - label: Prestige (per location, monthly)
+    name: prestige_monthly
+    type: flat
+    metric: location
+    limit: 1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: "$328-$410 per month per location (promotional vs. list price observed)"
+    userMultiplied: false
+  elements:
+  - name: Custom Forms Add-On
+  - name: 2,500 Texts / 10,000 Email Blasts
+  - name: 100 GB Storage
+- id: boulevard-aesthetics-bundle
+  name: Aesthetics Bundle (Med Spa)
+  type: paid
+  description: >-
+    Med-spa-specific bundle layered on top of the standard tiers, priced
+    similarly to Prestige, for aesthetics-focused inventory and consent
+    workflows.
+  entries:
+  - label: Aesthetics Starter Bundle (per location, monthly)
+    name: aesthetics_starter_monthly
+    type: flat
+    metric: location
+    limit: 1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: "~$410 per month per location"
+    userMultiplied: false
+  - label: Aesthetics Bundle (per location, monthly)
+    name: aesthetics_bundle_monthly
+    type: flat
+    metric: location
+    limit: 1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: "~$468 per month per location"
+    userMultiplied: false
+  elements:
+  - name: Med Spa Inventory
+  - name: Consent Forms
+- id: boulevard-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom, negotiated plan for multi-location and franchise businesses.
+    The only published tier that includes access to the Admin API, Client
+    API, and Tokenization API, plus a Developer Support Portal ticketing
+    channel and sandbox credentials (business ID + API key). Also required
+    for the Custom Booking Flow Starter Kit.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Admin API Access
+  - name: Client API Access
+  - name: Tokenization API Access
+  - name: Developer Support Portal
+  - name: Sandbox Account
+  - name: Custom Booking Flow Starter Kit
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

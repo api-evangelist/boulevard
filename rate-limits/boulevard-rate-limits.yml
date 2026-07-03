@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Boulevard
+providerId: boulevard
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon Software
+- Spa Software
+- GraphQL
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Boulevard does not publish numeric rate limits for the Admin API, Client
+  API, or Tokenization API in any publicly accessible page. The full
+  Developer Portal (developers.joinblvd.com) requires an Enterprise-tier
+  login to view API-reference-level detail, and no public source (SDK
+  source, partner integration guides, or community posts) states RPM/RPS
+  ceilings, query-cost limits, or GraphQL depth/complexity limits.
+notes: >-
+  Because Boulevard's Admin/Client APIs are GraphQL, a per-request
+  cost-based limit (as opposed to a flat requests-per-minute limit) would
+  be typical, but this is not confirmed for Boulevard specifically. Treat
+  every limit below as unverified until reconciled against an authenticated
+  Developer Portal session or direct confirmation from dev-support@blvd.co.
+sources:
+- https://developers.joinblvd.com/2020-01/admin-api/overview
+- https://developers.joinblvd.com/2020-01/client-api/overview
+- https://support.boulevard.io/en/articles/6577513-api-requests-developer-support-portal
+responseCodes:
+  throttled: 429
+limits:
+- name: Admin API request rate
+  scope: account
+  metric: requests
+  limit: not publicly documented
+  notes: No RPM/RPS figure found in public documentation; likely disclosed only inside the authenticated Developer Portal or Enterprise contract.
+- name: Client API request rate
+  scope: account
+  metric: requests
+  limit: not publicly documented
+  notes: Same as Admin API - not publicly disclosed.
+- name: GraphQL query cost / complexity
+  scope: account
+  metric: query_cost
+  limit: not publicly documented
+  notes: Typical for GraphQL APIs but not confirmed for Boulevard; the schema appears hand-built on Elixir/Absinthe, which supports complexity analysis, but no published limit was found.
+- name: Tokenization API request rate
+  scope: account
+  metric: requests
+  limit: not publicly documented
+  notes: The vault.blvd.co tokenization endpoint's operational limits are not documented publicly.
+policies:
+- name: Enterprise Support Channel
+  description: Rate-limit questions and increases are handled via the Developer Support Portal ticketing system for Enterprise customers, not through self-service documentation.
+- name: Sandbox First
+  description: New integrations are provisioned a sandbox businessId/apiKey pair before production access, which may carry its own (undocumented) lower limits.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

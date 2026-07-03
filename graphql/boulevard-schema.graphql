@@ -1,0 +1,427 @@
+"""
+Boulevard GraphQL Schema (conceptual)
+Models both confirmed Boulevard GraphQL surfaces - the Admin API
+(business operations: clients, appointments, staff, locations,
+memberships, gift cards, vouchers, account credit) and the Client API
+(self-booking: businesses, locations, services, staff, cart, checkout).
+Operation and type names marked below are drawn from Boulevard's own
+public reference source (book-sdk, promotion-demo) and third-party
+integration guides (Klaviyo, Extole); supporting fields are modeled
+for completeness and are not individually confirmed.
+"""
+
+scalar DateTime
+scalar JSON
+scalar Money
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum AppointmentStatus {
+  REQUESTED
+  CONFIRMED
+  CHECKED_IN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum MembershipStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+  PAST_DUE
+  EXPIRED
+}
+
+enum GiftCardStatus {
+  ACTIVE
+  REDEEMED
+  EXPIRED
+  VOIDED
+}
+
+enum VoucherStatus {
+  ACTIVE
+  REDEEMED
+  EXPIRED
+}
+
+enum AccountCreditAdjustmentReason {
+  REFERRAL_REWARD
+  GOODWILL
+  CORRECTION
+  PROMOTION
+  REFUND
+}
+
+enum CartStatus {
+  OPEN
+  RESERVED
+  PAYMENT_PENDING
+  CHECKED_OUT
+  EXPIRED
+  ABANDONED
+}
+
+enum WebhookEventType {
+  CLIENT_CREATED
+  CLIENT_UPDATED
+  APPOINTMENT_CREATED
+  APPOINTMENT_CONFIRMED
+  APPOINTMENT_CANCELLED
+  APPOINTMENT_RESCHEDULED
+  APPOINTMENT_COMPLETED
+  MEMBERSHIP_CREATED
+  MEMBERSHIP_CANCELLED
+  MEMBERSHIP_RENEWAL_SUCCEEDED
+}
+
+# ─────────────────────────────────────────────
+# Admin API - core types
+# ─────────────────────────────────────────────
+
+"Confirmed: a public reference exists at developers.joinblvd.com/graphql-admin-api/api-reference/types/Business"
+type Business {
+  id: ID!
+  urn: String!
+  name: String!
+  timezone: String!
+  locations: [Location!]!
+  createdAt: DateTime!
+}
+
+type Location {
+  id: ID!
+  business: Business!
+  name: String!
+  address: Address
+  phone: String
+  timezone: String!
+  staff: [Staff!]!
+  services: [Service!]!
+}
+
+type Address {
+  line1: String
+  line2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+}
+
+type Staff {
+  id: ID!
+  location: Location!
+  displayName: String!
+  firstName: String
+  lastName: String
+  title: String
+  bio: String
+  imageUrl: String
+  bookable: Boolean!
+}
+
+type ServiceCategory {
+  id: ID!
+  name: String!
+  services: [Service!]!
+}
+
+type Service {
+  id: ID!
+  category: ServiceCategory
+  name: String!
+  description: String
+  durationMinutes: Int!
+  priceStartingAt: Money
+  bookableOnline: Boolean!
+}
+
+"Modeled to hold custom-field/loyalty data referenced by third-party integrations (Klaviyo, Extole)"
+type CustomField {
+  key: String!
+  value: JSON
+}
+
+type Client {
+  id: ID!
+  urn: String!
+  business: Business!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  customFields: [CustomField!]!
+  loyaltyPointsBalance: Int
+  appointments: [Appointment!]!
+  memberships: [Membership!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Appointment {
+  id: ID!
+  location: Location!
+  client: Client!
+  staff: [Staff!]!
+  services: [Service!]!
+  status: AppointmentStatus!
+  startAt: DateTime!
+  endAt: DateTime!
+  createdAt: DateTime!
+  cancelledAt: DateTime
+  completedAt: DateTime
+}
+
+type Membership {
+  id: ID!
+  client: Client!
+  location: Location!
+  planName: String!
+  status: MembershipStatus!
+  startedAt: DateTime!
+  renewsAt: DateTime
+  cancelledAt: DateTime
+  entitlements: [MembershipEntitlement!]!
+}
+
+type MembershipEntitlement {
+  service: Service
+  remainingUses: Int
+  resetsAt: DateTime
+}
+
+type Package {
+  id: ID!
+  client: Client!
+  name: String!
+  remainingCredits: Int!
+  expiresAt: DateTime
+}
+
+"Confirmed mutation name and core fields per Extole integration guide"
+type GiftCard {
+  id: ID!
+  code: String!
+  location: Location!
+  client: Client
+  originalBalance: Money!
+  currentBalance: Money!
+  status: GiftCardStatus!
+  createdAt: DateTime!
+}
+
+"Confirmed mutation name: vouchersCreate"
+type Voucher {
+  id: ID!
+  client: Client!
+  location: Location!
+  services: [Service!]!
+  quantity: Int!
+  status: VoucherStatus!
+  expiresAt: DateTime
+}
+
+"Confirmed mutation name: createAccountCreditAdjustment"
+type AccountCreditAdjustment {
+  id: ID!
+  client: Client!
+  location: Location!
+  staff: Staff
+  adjustmentReason: AccountCreditAdjustmentReason!
+  balanceDelta: Money!
+  resultingBalance: Money!
+  createdAt: DateTime!
+}
+
+type Webhook {
+  id: ID!
+  business: Business!
+  url: String!
+  eventTypes: [WebhookEventType!]!
+  active: Boolean!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Client API - booking cart types
+# ─────────────────────────────────────────────
+
+type BookableDate {
+  date: String!
+  hasAvailability: Boolean!
+}
+
+type BookableTime {
+  startAt: DateTime!
+  staff: Staff
+}
+
+type CartItem {
+  id: ID!
+  service: Service!
+  staff: Staff
+  price: Money!
+}
+
+"Confirmed mutation names: CreateCart, AddCartSelectedPurchasableItem, AddCartCardPaymentMethod, CheckoutCart"
+type Cart {
+  id: ID!
+  location: Location!
+  status: CartStatus!
+  items: [CartItem!]!
+  clientDetails: CartClientDetails
+  reservedStartAt: DateTime
+  paymentMethodToken: String
+  total: Money
+  createdAt: DateTime!
+  expiresAt: DateTime
+}
+
+type CartClientDetails {
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+}
+
+type CheckoutResult {
+  cart: Cart!
+  appointment: Appointment
+  confirmationCode: String
+}
+
+# ─────────────────────────────────────────────
+# Input types
+# ─────────────────────────────────────────────
+
+input UpdateClientInput {
+  clientId: ID!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  customFields: [CustomFieldInput!]
+}
+
+input CustomFieldInput {
+  key: String!
+  value: JSON
+}
+
+input CreateGiftCardInput {
+  locationId: ID!
+  clientId: ID
+  code: String
+  amount: Money!
+}
+
+input CreateAccountCreditAdjustmentInput {
+  clientId: ID!
+  locationId: ID!
+  staffId: ID
+  adjustmentReason: AccountCreditAdjustmentReason!
+  balanceDelta: Money!
+}
+
+input VouchersCreateInput {
+  clientId: ID!
+  locationId: ID!
+  serviceIds: [ID!]!
+  quantity: Int!
+}
+
+input CreateCartInput {
+  locationId: ID!
+  clientId: ID
+}
+
+input AddCartSelectedPurchasableItemInput {
+  cartId: ID!
+  itemId: ID!
+  staffId: ID
+}
+
+input ReserveCartTimeslotInput {
+  cartId: ID!
+  startAt: DateTime!
+}
+
+input AddCartCardPaymentMethodInput {
+  cartId: ID!
+  paymentToken: String!
+}
+
+input CheckoutCartInput {
+  cartId: ID!
+}
+
+input CreateWebhookInput {
+  url: String!
+  eventTypes: [WebhookEventType!]!
+}
+
+# ─────────────────────────────────────────────
+# Admin API - Query / Mutation roots
+# ─────────────────────────────────────────────
+
+type AdminQuery {
+  business: Business!
+  location(id: ID!): Location
+  locations: [Location!]!
+  staffMember(id: ID!): Staff
+  service(id: ID!): Service
+  services: [Service!]!
+  "Confirmed: a public reference exists at graphql-admin-api/api-reference/queries/client"
+  client(id: ID!): Client
+  clients(updatedSince: DateTime, first: Int, after: String): [Client!]!
+  appointment(id: ID!): Appointment
+  appointments(locationId: ID, status: AppointmentStatus, since: DateTime, first: Int, after: String): [Appointment!]!
+  membership(id: ID!): Membership
+  memberships(clientId: ID, status: MembershipStatus): [Membership!]!
+  package(id: ID!): Package
+  giftCard(code: String!): GiftCard
+  voucher(id: ID!): Voucher
+  webhooks: [Webhook!]!
+}
+
+type AdminMutation {
+  updateClient(input: UpdateClientInput!): Client!
+  createGiftCard(input: CreateGiftCardInput!): GiftCard!
+  createAccountCreditAdjustment(input: CreateAccountCreditAdjustmentInput!): AccountCreditAdjustment!
+  vouchersCreate(input: VouchersCreateInput!): [Voucher!]!
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  deleteWebhook(id: ID!): Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Client API - Query / Mutation roots
+# ─────────────────────────────────────────────
+
+type ClientQuery {
+  business: Business!
+  locations: [Location!]!
+  serviceCategories(locationId: ID!): [ServiceCategory!]!
+  staff(locationId: ID!): [Staff!]!
+  cart(id: ID!): Cart
+  bookableDates(cartId: ID!, month: String!): [BookableDate!]!
+  bookableTimes(cartId: ID!, date: String!): [BookableTime!]!
+}
+
+type ClientMutation {
+  createCart(input: CreateCartInput!): Cart!
+  addCartSelectedPurchasableItem(input: AddCartSelectedPurchasableItemInput!): Cart!
+  reserveCartTimeslot(input: ReserveCartTimeslotInput!): Cart!
+  updateCartClientDetails(cartId: ID!, clientDetails: CartClientDetails!): Cart!
+  addCartCardPaymentMethod(input: AddCartCardPaymentMethodInput!): Cart!
+  checkoutCart(input: CheckoutCartInput!): CheckoutResult!
+}
+
+schema {
+  query: AdminQuery
+  mutation: AdminMutation
+}

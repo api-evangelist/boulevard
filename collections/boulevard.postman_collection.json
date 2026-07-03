@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "b0u1eva7-d000-4000-a000-b0u1evard0001",
+    "name": "Boulevard API",
+    "description": "GraphQL Admin API, GraphQL Client API, and REST Tokenization API for Boulevard - a client experience platform for appointment-based self-care businesses. Requires an Enterprise-tier Boulevard account, a sandbox businessId, and an apiKey provisioned through the Boulevard Developer Portal (developers.joinblvd.com).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{apiKey}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "adminApiUrl", "value": "https://dashboard.boulevard.io/api/2020-01/admin" },
+    { "key": "clientApiUrl", "value": "https://dashboard.boulevard.io/api/2020-01/client" },
+    { "key": "tokenizeUrl", "value": "https://vault.blvd.co/cards/tokenize" },
+    { "key": "businessId", "value": "urn:blvd:Business:00000000-0000-0000-0000-000000000000" },
+    { "key": "apiKey", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Admin API - Clients & CRM",
+      "item": [
+        {
+          "name": "Get client by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetClient($id: ID!) {\n  client(id: $id) {\n    id\n    firstName\n    lastName\n    email\n    phone\n    loyaltyPointsBalance\n    customFields { key value }\n  }\n}",
+                "variables": "{\n  \"id\": \"{{clientId}}\"\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "List clients updated since",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ListClients($updatedSince: DateTime, $first: Int) {\n  clients(updatedSince: $updatedSince, first: $first) {\n    id\n    firstName\n    lastName\n    email\n    updatedAt\n  }\n}",
+                "variables": "{\n  \"updatedSince\": \"2026-06-01T00:00:00Z\",\n  \"first\": 50\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "updateClient mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation UpdateClient($input: UpdateClientInput!) {\n  updateClient(input: $input) {\n    id\n    customFields { key value }\n  }\n}",
+                "variables": "{\n  \"input\": {\n    \"clientId\": \"{{clientId}}\",\n    \"customFields\": [ { \"key\": \"loyalty_points\", \"value\": 250 } ]\n  }\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin API - Appointments, Staff & Locations",
+      "item": [
+        {
+          "name": "List appointments for a location",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ListAppointments($locationId: ID, $status: AppointmentStatus, $since: DateTime) {\n  appointments(locationId: $locationId, status: $status, since: $since) {\n    id\n    status\n    startAt\n    endAt\n    client { id firstName lastName }\n    staff { id displayName }\n  }\n}",
+                "variables": "{\n  \"locationId\": \"{{locationId}}\",\n  \"status\": \"CONFIRMED\",\n  \"since\": \"2026-07-01T00:00:00Z\"\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "List locations and staff",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ListLocations {\n  locations {\n    id\n    name\n    timezone\n    staff { id displayName bookable }\n  }\n}",
+                "variables": "{}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin API - Memberships & Packages",
+      "item": [
+        {
+          "name": "List active memberships for a client",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ListMemberships($clientId: ID, $status: MembershipStatus) {\n  memberships(clientId: $clientId, status: $status) {\n    id\n    planName\n    status\n    renewsAt\n    entitlements { service { name } remainingUses }\n  }\n}",
+                "variables": "{\n  \"clientId\": \"{{clientId}}\",\n  \"status\": \"ACTIVE\"\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin API - Payments, Gift Cards & Vouchers",
+      "item": [
+        {
+          "name": "CreateGiftCard mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CreateGiftCard($input: CreateGiftCardInput!) {\n  createGiftCard(input: $input) {\n    id\n    code\n    currentBalance\n    status\n  }\n}",
+                "variables": "{\n  \"input\": { \"locationId\": \"{{locationId}}\", \"clientId\": \"{{clientId}}\", \"amount\": 50.00 }\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "createAccountCreditAdjustment mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation AdjustAccountCredit($input: CreateAccountCreditAdjustmentInput!) {\n  createAccountCreditAdjustment(input: $input) {\n    id\n    resultingBalance\n    adjustmentReason\n  }\n}",
+                "variables": "{\n  \"input\": { \"clientId\": \"{{clientId}}\", \"locationId\": \"{{locationId}}\", \"adjustmentReason\": \"REFERRAL_REWARD\", \"balanceDelta\": 10.00 }\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "vouchersCreate mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CreateVouchers($input: VouchersCreateInput!) {\n  vouchersCreate(input: $input) {\n    id\n    status\n    expiresAt\n  }\n}",
+                "variables": "{\n  \"input\": { \"clientId\": \"{{clientId}}\", \"locationId\": \"{{locationId}}\", \"serviceIds\": [\"{{serviceId}}\"], \"quantity\": 1 }\n}"
+              }
+            },
+            "url": { "raw": "{{adminApiUrl}}", "host": ["{{adminApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Client API - Catalog & Availability",
+      "item": [
+        {
+          "name": "Get business and locations",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetBusiness {\n  business {\n    id\n    name\n    locations { id name address { city state } }\n  }\n}",
+                "variables": "{}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "List bookable service categories",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ListServiceCategories($locationId: ID!) {\n  serviceCategories(locationId: $locationId) {\n    id\n    name\n    services { id name durationMinutes priceStartingAt bookableOnline }\n  }\n}",
+                "variables": "{\n  \"locationId\": \"{{locationId}}\"\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Get bookable dates for a cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetBookableDates($cartId: ID!, $month: String!) {\n  bookableDates(cartId: $cartId, month: $month) {\n    date\n    hasAvailability\n  }\n}",
+                "variables": "{\n  \"cartId\": \"{{cartId}}\",\n  \"month\": \"2026-08\"\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "Get bookable times for a date",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetBookableTimes($cartId: ID!, $date: String!) {\n  bookableTimes(cartId: $cartId, date: $date) {\n    startAt\n    staff { id displayName }\n  }\n}",
+                "variables": "{\n  \"cartId\": \"{{cartId}}\",\n  \"date\": \"2026-08-15\"\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Client API - Booking Cart & Checkout",
+      "item": [
+        {
+          "name": "CreateCart mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CreateCart($input: CreateCartInput!) {\n  createCart(input: $input) {\n    id\n    status\n  }\n}",
+                "variables": "{\n  \"input\": { \"locationId\": \"{{locationId}}\" }\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "AddCartSelectedPurchasableItem mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation AddCartItem($input: AddCartSelectedPurchasableItemInput!) {\n  addCartSelectedPurchasableItem(input: $input) {\n    id\n    items { id service { name } price }\n  }\n}",
+                "variables": "{\n  \"input\": { \"cartId\": \"{{cartId}}\", \"itemId\": \"{{serviceId}}\" }\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "reserveCartTimeslot mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation ReserveTimeslot($input: ReserveCartTimeslotInput!) {\n  reserveCartTimeslot(input: $input) {\n    id\n    status\n    reservedStartAt\n  }\n}",
+                "variables": "{\n  \"input\": { \"cartId\": \"{{cartId}}\", \"startAt\": \"2026-08-15T14:00:00Z\" }\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "AddCartCardPaymentMethod mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation AddCardPaymentMethod($input: AddCartCardPaymentMethodInput!) {\n  addCartCardPaymentMethod(input: $input) {\n    id\n    status\n  }\n}",
+                "variables": "{\n  \"input\": { \"cartId\": \"{{cartId}}\", \"paymentToken\": \"{{paymentToken}}\" }\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        },
+        {
+          "name": "CheckoutCart mutation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Boulevard-Business-Id", "value": "{{businessId}}" }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation CheckoutCart($input: CheckoutCartInput!) {\n  checkoutCart(input: $input) {\n    confirmationCode\n    appointment { id startAt status }\n  }\n}",
+                "variables": "{\n  \"input\": { \"cartId\": \"{{cartId}}\" }\n}"
+              }
+            },
+            "url": { "raw": "{{clientApiUrl}}", "host": ["{{clientApiUrl}}"] }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tokenization API",
+      "item": [
+        {
+          "name": "Tokenize a card",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"4242424242424242\",\n  \"expMonth\": 12,\n  \"expYear\": 2028,\n  \"cvc\": \"123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{tokenizeUrl}}", "host": ["{{tokenizeUrl}}"] }
+          },
+          "response": [
+            {
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "url": { "raw": "{{tokenizeUrl}}", "host": ["{{tokenizeUrl}}"] }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "body": "{\n  \"token\": \"tok_1a2b3c4d5e6f\",\n  \"last4\": \"4242\",\n  \"brand\": \"visa\"\n}",
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

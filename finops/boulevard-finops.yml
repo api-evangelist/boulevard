@@ -1,0 +1,107 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Boulevard
+providerId: boulevard
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon Software
+- Spa Software
+- Med Spa
+- Payments
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Boulevard spend. Boulevard is sold as a per-location SaaS
+  subscription (Essentials / Premier / Prestige / Enterprise) rather than
+  a metered API product - there is no per-call or per-token API charge.
+  The dominant variable-cost driver for a Boulevard customer is payment
+  processing: Boulevard is a certified Payment Facilitator (PayFac)
+  processing over $2B/year across its customer base, so card-present and
+  card-not-present processing fees (not published as a flat rate) are the
+  main usage-based line item alongside SMS/email-blast overage beyond each
+  tier's included allotment.
+notes: >-
+  Boulevard does not publish payment-processing rates or SMS/email overage
+  rates; these are negotiated or disclosed at contract time. API access
+  itself (Admin/Client/Tokenization) is a feature entitlement of the
+  Enterprise tier, not a separately metered cost.
+sources:
+- https://www.joinblvd.com/pricing
+- https://www.joinblvd.com/features/api
+- https://www.joinblvd.com/enterprise
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Boulevard
+serviceCategory: Vertical SaaS - Salon, Spa & Med Spa Management
+billingModel:
+  pricingCategory: Subscription (per location) plus usage-based payments/messaging
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Subscription
+  - Usage
+  - Purchase
+meters:
+- name: location_subscription
+  description: Monthly or annual per-location subscription fee (Essentials / Premier / Prestige / Enterprise).
+  unit: locations
+  aggregation: sum
+  dimensions:
+  - account
+  - tier
+- name: payment_processing_volume
+  description: Card payment volume processed through Boulevard as PayFac; fee rate not publicly published.
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - account
+  - location
+- name: sms_messages
+  description: Marketing/appointment SMS sent beyond the tier's included text allotment.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - location
+- name: email_blasts
+  description: Marketing email sends beyond the tier's included allotment.
+  unit: emails
+  aggregation: sum
+  dimensions:
+  - account
+  - location
+- name: storage_gb
+  description: Media/document storage (client photos, consent forms) beyond the tier's included allotment.
+  unit: gb
+  aggregation: max
+  dimensions:
+  - account
+  - location
+- name: gift_card_liability
+  description: Outstanding stored-value balance on gift cards issued via the Admin API's CreateGiftCard mutation.
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - account
+  - location
+principles:
+- name: Visibility
+  description: Reconcile per-location subscription invoices against active-location counts; pull payment-processing statements for the true variable-cost driver.
+- name: Allocation
+  description: Tag spend per location/franchise unit; API access itself is a contract-level entitlement, not a per-call cost center.
+- name: Optimization
+  description: Right-size tier per location (Essentials vs. Premier vs. Prestige) based on professional count and messaging volume rather than defaulting every location to Enterprise.
+- name: Accountability
+  description: Enterprise contract owner should track API usage (webhooks, gift card issuance, account credit adjustments) against the loyalty/marketing budget it's meant to serve.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
