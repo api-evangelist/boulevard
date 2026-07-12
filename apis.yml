@@ -194,6 +194,8 @@ apis:
     mutation. Keeps merchant integrations out of PCI DSS scope by ensuring card
     numbers never transit the integrator's own servers.
 common:
+- type: DomainSecurity
+  url: security/boulevard-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/Boulevard
 - type: LinkedIn
@@ -208,6 +210,8 @@ common:
   url: rate-limits/boulevard-rate-limits.yml
 - type: FinOps
   url: finops/boulevard-finops.yml
+- type: Blog
+  url: https://www.joinblvd.com/rss.xml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
