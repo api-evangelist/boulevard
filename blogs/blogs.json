@@ -1,0 +1,13 @@
+{
+  "repo": "boulevard",
+  "feeds": [
+    {
+      "source": "https://www.joinblvd.com/rss.xml",
+      "feed_url": "https://www.joinblvd.com/rss.xml",
+      "title": "The Boulevard Blog - Boulevard",
+      "saved": 25
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 50
+}
