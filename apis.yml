@@ -35,7 +35,7 @@ tags:
 - Self-Care
 created: '2026-07-03'
 modified: '2026-07-03'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: boulevard:boulevard-admin-clients-crm-api
   name: Boulevard Admin API - Clients & CRM
