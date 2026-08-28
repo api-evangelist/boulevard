@@ -11,6 +11,17 @@ description: Boulevard is a client experience platform purpose-built for appoint
   gift cards) - plus a separate Tokenization API for PCI-scope-reducing card capture.
   API access is gated to the Enterprise tier and provisioned through a developer
   sandbox (business ID + API key) via the Boulevard Developer Portal.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
