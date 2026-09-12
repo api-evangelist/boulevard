@@ -5,12 +5,12 @@
       "source": "https://www.joinblvd.com/rss.xml",
       "feed_url": "https://www.joinblvd.com/rss.xml",
       "title": "The Boulevard Blog - Boulevard",
-      "saved": 9,
+      "saved": 0,
       "nature": "vendor-blog",
       "nature_basis": "path_blog"
     }
   ],
-  "fetched": "2026-08-30T22:05:13Z",
+  "fetched": "2026-09-06T18:58:10Z",
   "post_count": 72,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
