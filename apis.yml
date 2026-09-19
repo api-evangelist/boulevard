@@ -79,6 +79,12 @@ apis:
   - Appointments
   - Scheduling
   - Staff
+  - Location
+  - GraphQL
+  tags_raw:
+  - Appointments
+  - Scheduling
+  - Staff
   - Locations
   - GraphQL
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
@@ -101,7 +107,7 @@ apis:
 - aid: boulevard:boulevard-admin-memberships-packages-api
   name: Boulevard Admin API - Memberships & Packages
   tags:
-  - Memberships
+  - Membership
   - Packages
   - Subscription
   - GraphQL
@@ -179,6 +185,12 @@ apis:
 - aid: boulevard:boulevard-client-catalog-availability-api
   name: Boulevard Client API - Catalog & Availability
   tags:
+  - Services
+  - Staff
+  - Location
+  - Availability
+  - GraphQL
+  tags_raw:
   - Services
   - Staff
   - Locations
