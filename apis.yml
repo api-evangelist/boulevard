@@ -44,6 +44,7 @@ tags:
 - CRM
 - Payments
 - Self-Care
+- Scheduling
 created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.23'
@@ -65,10 +66,6 @@ apis:
     type: Documentation
   - url: https://developers.joinblvd.com/graphql-admin-api/api-reference/types/Business
     type: APIReference
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Query and mutate client (customer) records synced from Boulevard's
     CRM - profiles, contact details, custom fields, loyalty point balances, and
     appointment history. Third parties such as Klaviyo and Extole use this domain's
@@ -95,10 +92,6 @@ apis:
     type: Documentation
   - url: https://developers.joinblvd.com/2020-01/admin-api/authentication
     type: Documentation
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Read and sync appointment, staff, and location data across a business's
     calendar - past, current, and future appointments, professional rosters, and
     the physical/virtual locations services are delivered from. Backs webhook-driven
@@ -122,10 +115,6 @@ apis:
   properties:
   - url: https://developers.joinblvd.com/2020-01/admin-api/overview
     type: Documentation
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Access recurring membership and prepaid package data - plan status,
     renewal state, and entitlements. Membership lifecycle changes are also pushed
     outbound as MEMBERSHIP_CREATED, MEMBERSHIP_CANCELLED, and MEMBERSHIP_RENEWAL_SUCCEEDED
@@ -144,10 +133,6 @@ apis:
   properties:
   - url: https://developers.joinblvd.com/2020-01/admin-api/overview
     type: Documentation
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Issue and manage stored-value gift cards, service vouchers, and
     account credit adjustments as a certified payment facilitator. Documented
     mutations include `CreateGiftCard`, `vouchersCreate`, and `createAccountCreditAdjustment`,
@@ -172,10 +157,6 @@ apis:
     type: SDK
   - url: https://github.com/Boulevard/create-booking-flow
     type: SDK
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Build custom, on-brand self-booking experiences on top of a cart
     workflow - create a cart for a location, add a selected purchasable (service)
     item, reserve an available timeslot, attach a tokenized card as the payment
@@ -204,10 +185,6 @@ apis:
     type: Documentation
   - url: https://github.com/Boulevard/book-sdk
     type: SDK
-  - url: graphql/boulevard-graphql.md
-    type: GraphQL
-  - url: graphql/boulevard-schema.graphql
-    type: GraphQL
   description: Public-facing catalog reads that power a booking widget before
     a client ever creates a cart - business and location lookup, bookable service
     categories, staff/professional listings, and bookable dates/times for a chosen
