@@ -46,7 +46,7 @@ tags:
 - Self-Care
 - Scheduling
 created: '2026-07-03'
-modified: '2026-07-03'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: boulevard:boulevard-admin-clients-crm-api
@@ -211,6 +211,8 @@ apis:
     mutation. Keeps merchant integrations out of PCI DSS scope by ensuring card
     numbers never transit the integrator's own servers.
 common:
+- url: https://www.joinblvd.com/blog
+  type: Blog
 - type: DomainSecurity
   url: security/boulevard-domain-security.yml
 - type: GitHubOrganization
