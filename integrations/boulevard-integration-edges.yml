@@ -1,0 +1,456 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/boulevard/integrations
+checked:
+- https://composio.dev/toolkits/boulevard
+- https://monid.ai/tools/boulevard
+- https://n8n.io/integrations/boulevard/
+- https://zapier.com/apps/boulevard/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: boulevard
+  url: https://zapier.com/apps/boulevard/integrations
+  external_url: https://www.joinblvd.com/integrations/zapier
+  partner_tier: GOLD
+  triggers:
+  - key: appointmentCanceledHookTrigger
+    label: Appointment Cancelled
+  - key: appointmentCompletedHookTrigger
+    label: Appointment Completed
+  - key: appointmentCreatedHookTrigger
+    label: New Appointment
+  - key: appointmentRescheduledHookTrigger
+    label: Appointment Rescheduled
+  - key: clientCreatedHookTrigger
+    label: New Client
+  - key: clientUpdatedHookTrigger
+    label: Client Updated
+  - key: entityTagsAddedTrigger
+    label: Entity Tags Added
+  - key: entityTagsRemovedTrigger
+    label: Entity Tags Removed
+  - key: orderCompletedHookTrigger
+    label: Order Completed
+  actions:
+  - key: addTagAction
+    label: Add Tag
+  - key: createClientAction
+    label: Create Client
+  - key: createClientNoteAction
+    label: Create Client Note
+  - key: createTimeblockAction
+    label: Create Timeblock
+  - key: deleteTimeblockAction
+    label: Delete Timeblock
+  - key: updateAppointmentAction
+    label: Update Appointment
+  - key: updateClientAction
+    label: Update Client
+  searches:
+  - key: searchAppointment
+    label: Find Appointment
+  - key: searchClientByEmail
+    label: Find Client by Email
+  - key: searchClientByExternalId
+    label: Find Client by External ID
+  - key: searchClientById
+    label: Find Client by ID
+  - key: searchOrderById
+    label: Find Order by ID
+edges:
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Birdeye
+  partner: birdeye
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/birdeye
+  direction: third-party
+  category: Reviews
+  partner_url: https://birdeye.com/
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: Klaviyo
+  partner: klaviyo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/klaviyo
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.klaviyo.com/
+- partner_name: Podium
+  partner: podium
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/podium
+  direction: third-party
+  category: Communication
+  partner_url: https://www.podium.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Facebook Conversions
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Constant Contact
+  partner: constant-contact
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/constant-contact
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://www.constantcontact.com/signup.jsp?pn=zapier
+- partner_name: Quo
+  partner: quo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/quo
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://quo.com/?utm_source=partnership&utm_medium=partner&utm_campaign=zapier
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Cometly
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/cometly
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://zapier.com/cometly.com
+- partner_name: Aesthetix CRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/aesthetix-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://aesthetixcrm.com/
+- partner_name: WaiverForever
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/waiverforever
+  direction: third-party
+  category: Documents
+  partner_url: http://www.waiverforever.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: WhatConverts
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/whatconverts
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.whatconverts.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+templates:
+- title: Add or update subscribers in Mailchimp when new clients are created in Boulevard
+  url: https://zapier.com/apps/boulevard/integrations/mailchimp/824590/add-or-update-subscribers-in-mailchimp-when-new-clients-are-created-in-boulevard
+  apps:
+  - boulevard
+  - mailchimp
+- title: Add new Boulevard clients as Klaviyo subscribers
+  url: https://zapier.com/apps/boulevard/integrations/klaviyo/788512/add-new-boulevard-clients-as-klaviyo-subscribers
+  apps:
+  - boulevard
+  - klaviyo
+- title: Create a new Google Sheets row when Boulevard orders are completed
+  url: https://zapier.com/apps/boulevard/integrations/google-sheets/255675010/create-a-new-google-sheets-row-when-boulevard-orders-are-completed
+  apps:
+  - boulevard
+  - google-sheets
+- title: Create detailed events in Google Calendar for new appointments in Boulevard
+  url: https://zapier.com/apps/boulevard/integrations/google-calendar/1596916/create-detailed-events-in-google-calendar-for-new-appointments-in-boulevard
+  apps:
+  - boulevard
+  - google-calendar
+- title: Send offline conversions in Google Ads when orders are completed in Boulevard
+  url: https://zapier.com/apps/boulevard/integrations/google-ads/1657791/send-offline-conversions-in-google-ads-when-orders-are-completed-in-boulevard
+  apps:
+  - boulevard
+  - google-ads
+- title: Create or update Flodesk subscribers for new Boulevard appointments
+  url: https://zapier.com/apps/boulevard/integrations/flodesk/1689438/create-or-update-flodesk-subscribers-for-new-boulevard-appointments
+  apps:
+  - boulevard
+  - flodesk
+- title: Send a custom email when a specific item is purchased in Boulevard
+  url: https://zapier.com/apps/boulevard/integrations/email/788553/send-a-custom-email-when-a-specific-item-is-purchased-in-boulevard
+  apps:
+  - boulevard
+  - filter
+  - email
+- title: Create or update Quo contacts for new Boulevard clients
+  url: https://zapier.com/apps/boulevard/integrations/quo/1237685/create-or-update-quo-contacts-for-new-boulevard-clients
+  apps:
+  - boulevard
+  - quo
+- title: '"update LeadConnector opportunities when Boulevard appointments are rescheduled"'
+  url: https://zapier.com/apps/boulevard/integrations/leadconnector/1657772/update-leadconnector-opportunities-when-boulevard-appointments-are-rescheduled
+  apps:
+  - boulevard
+  - leadconnector
+- title: Create Zoom meetings for new Boulevard appointments
+  url: https://zapier.com/apps/boulevard/integrations/zoom/255649487/create-zoom-meetings-for-new-boulevard-appointments
+  apps:
+  - boulevard
+  - zoom
+- title: Create Google Calendar events for new Boulevard appointments
+  url: https://zapier.com/apps/boulevard/integrations/google-calendar/1708701/create-google-calendar-events-for-new-boulevard-appointments
+  apps:
+  - boulevard
+  - google-calendar
+- title: Enroll new Boulevard appointments as contacts in NiceJob once completed
+  url: https://zapier.com/apps/boulevard/integrations/nicejob/255644146/enroll-new-boulevard-appointments-as-contacts-in-nicejob-once-completed
+  apps:
+  - boulevard
+  - nicejob
+template_total: 215
