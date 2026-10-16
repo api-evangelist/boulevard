@@ -2,15 +2,21 @@
   "repo": "boulevard",
   "feeds": [
     {
+      "source": "https://www.joinblvd.com/blog",
+      "feed_url": "https://www.joinblvd.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.joinblvd.com/rss.xml",
       "feed_url": "https://www.joinblvd.com/rss.xml",
-      "title": "The Boulevard Blog - Boulevard",
-      "saved": 2,
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-10-03T12:15:37Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 93,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
