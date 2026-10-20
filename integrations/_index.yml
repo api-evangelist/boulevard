@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/mailchimp/824590/add-or-update-subscribers-in-mailchimp-when-new-clients-are-created-in-boulevard
   template: https://zapier.com/apps/boulevard/integrations/mailchimp/824590/add-or-update-subscribers-in-mailchimp-when-new-clients-are-created-in-boulevard
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-add-new-boulevard-clients-as-klaviyo-subscribers
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/klaviyo/788512/add-new-boulevard-clients-as-klaviyo-subscribers
   template: https://zapier.com/apps/boulevard/integrations/klaviyo/788512/add-new-boulevard-clients-as-klaviyo-subscribers
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-a-new-google-sheets-row-when-boulevard-orders-are-completed
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/google-sheets/255675010/create-a-new-google-sheets-row-when-boulevard-orders-are-completed
   template: https://zapier.com/apps/boulevard/integrations/google-sheets/255675010/create-a-new-google-sheets-row-when-boulevard-orders-are-completed
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-detailed-events-in-google-calendar-for-new-appointments-in-boulevard
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/google-calendar/1596916/create-detailed-events-in-google-calendar-for-new-appointments-in-boulevard
   template: https://zapier.com/apps/boulevard/integrations/google-calendar/1596916/create-detailed-events-in-google-calendar-for-new-appointments-in-boulevard
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-send-offline-conversions-in-google-ads-when-orders-are-completed-in-boulevard
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/google-ads/1657791/send-offline-conversions-in-google-ads-when-orders-are-completed-in-boulevard
   template: https://zapier.com/apps/boulevard/integrations/google-ads/1657791/send-offline-conversions-in-google-ads-when-orders-are-completed-in-boulevard
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-or-update-flodesk-subscribers-for-new-boulevard-appointments
@@ -84,6 +89,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/flodesk/1689438/create-or-update-flodesk-subscribers-for-new-boulevard-appointments
   template: https://zapier.com/apps/boulevard/integrations/flodesk/1689438/create-or-update-flodesk-subscribers-for-new-boulevard-appointments
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-or-update-quo-contacts-for-new-boulevard-clients
@@ -98,6 +104,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/quo/1237685/create-or-update-quo-contacts-for-new-boulevard-clients
   template: https://zapier.com/apps/boulevard/integrations/quo/1237685/create-or-update-quo-contacts-for-new-boulevard-clients
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-update-leadconnector-opportunities-when-boulevard-appointments-are-rescheduled
@@ -111,6 +118,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/leadconnector/1657772/update-leadconnector-opportunities-when-boulevard-appointments-are-rescheduled
   template: https://zapier.com/apps/boulevard/integrations/leadconnector/1657772/update-leadconnector-opportunities-when-boulevard-appointments-are-rescheduled
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-zoom-meetings-for-new-boulevard-appointments
@@ -125,6 +133,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/zoom/255649487/create-zoom-meetings-for-new-boulevard-appointments
   template: https://zapier.com/apps/boulevard/integrations/zoom/255649487/create-zoom-meetings-for-new-boulevard-appointments
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-create-google-calendar-events-for-new-boulevard-appointments
@@ -139,252 +148,7 @@
   evidence: https://zapier.com/apps/boulevard/integrations/google-calendar/1708701/create-google-calendar-events-for-new-boulevard-appointments
   template: https://zapier.com/apps/boulevard/integrations/google-calendar/1708701/create-google-calendar-events-for-new-boulevard-appointments
   source: template
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-squarespace-forms
-  label: Squarespace Forms
-  partner: squarespace
-  partner_name: Squarespace Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/squarespace-forms
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/hubspot
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-birdeye
-  label: Birdeye
-  partner: birdeye
-  partner_name: Birdeye
-  category: Reviews
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/birdeye
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-gmail
-  label: Gmail
-  partner: gmail
-  partner_name: Gmail
-  category: Email
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/gmail
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-podium
-  label: Podium
-  partner: podium
-  partner_name: Podium
-  category: Communication
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/podium
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/typeform
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-clickfunnels-classic
-  label: ClickFunnels Classic
-  partner: clickfunnels
-  partner_name: ClickFunnels Classic
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/clickfunnels-classic
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-facebook-conversions
-  label: Facebook Conversions
-  partner_name: Facebook Conversions
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/facebook-conversions
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/shopify
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-constant-contact
-  label: Constant Contact
-  partner: constant-contact
-  partner_name: Constant Contact
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/constant-contact
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-jotform
-  label: Jotform
-  partner: jotform
-  partner_name: Jotform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/jotform
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-facebook-lead-ads
-  label: Facebook Lead Ads
-  partner: facebook-lead-ads
-  partner_name: Facebook Lead Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/facebook-lead-ads
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-wix
-  label: Wix
-  partner: wix
-  partner_name: Wix
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/wix
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-calendly
-  label: Calendly
-  partner: calendly
-  partner_name: Calendly
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/calendly
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-quickbooks-online
-  label: QuickBooks Online
-  partner_name: QuickBooks Online
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/quickbooks
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-cometly
-  label: Cometly
-  partner_name: Cometly
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/cometly
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-aesthetix-crm
-  label: Aesthetix CRM
-  partner_name: Aesthetix CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/aesthetix-crm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-waiverforever
-  label: WaiverForever
-  partner_name: WaiverForever
-  category: Documents
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/waiverforever
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/square
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-whatconverts
-  label: WhatConverts
-  partner_name: WhatConverts
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/whatconverts
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: boulevard-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/boulevard/integrations/activecampaign
-  source: edge
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: boulevard-zapier
@@ -411,4 +175,273 @@
     beta: false
     builder: unknown (not in the directory record)
   status: not-a-workflow
+  arazzo: null
+- slug: boulevard-squarespace-forms
+  label: Squarespace Forms
+  partner: squarespace
+  partner_name: Squarespace Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/squarespace-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-birdeye
+  label: Birdeye
+  partner: birdeye
+  partner_name: Birdeye
+  category: Reviews
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/birdeye
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-gmail
+  label: Gmail
+  partner: gmail
+  partner_name: Gmail
+  category: Email
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/gmail
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/typeform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-clickfunnels-classic
+  label: ClickFunnels Classic
+  partner: clickfunnels
+  partner_name: ClickFunnels Classic
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/clickfunnels-classic
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-podium
+  label: Podium
+  partner: podium
+  partner_name: Podium
+  category: Communication
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/podium
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-facebook-conversions
+  label: Facebook Conversions
+  partner: facebook
+  partner_name: Facebook Conversions
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/facebook-conversions
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-constant-contact
+  label: Constant Contact
+  partner: constant-contact
+  partner_name: Constant Contact
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/constant-contact
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-jotform
+  label: Jotform
+  partner: jotform
+  partner_name: Jotform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/jotform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-wix
+  label: Wix
+  partner: wix
+  partner_name: Wix
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/wix
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-facebook-lead-ads
+  label: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/facebook-lead-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-calendly
+  label: Calendly
+  partner: calendly
+  partner_name: Calendly
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/calendly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-quickbooks-online
+  label: QuickBooks Online
+  partner: quickbooks
+  partner_name: QuickBooks Online
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/quickbooks
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-cometly
+  label: Cometly
+  partner_name: Cometly
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/cometly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-aesthetix-crm
+  label: Aesthetix CRM
+  partner_name: Aesthetix CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/aesthetix-crm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-waiverforever
+  label: WaiverForever
+  partner_name: WaiverForever
+  category: Documents
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/waiverforever
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-square
+  label: Square
+  partner: square
+  partner_name: Square
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/square
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-whatconverts
+  label: WhatConverts
+  partner_name: WhatConverts
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/whatconverts
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: boulevard-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/boulevard/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
