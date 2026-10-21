@@ -8,6 +8,12 @@ checked:
 - https://n8n.io/integrations/boulevard/
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/boulevard/integrations
+- https://a16z.com/portfolio/
+- https://www.battery.com/company/
+- https://www.battery.com/wp-admin/admin-ajax.php
+- https://www.indexventures.com/companies/
+- https://www.sequoiacap.com/our-companies/
+- https://www.sequoiacap.com/sitemap.xml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -447,6 +453,33 @@ edges:
   direction: third-party
   category: Marketing Automation
   partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Index Ventures
+  partner: index-ventures
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.indexventures.com/companies/boulevard/
+  category: vc portfolio participation
+  contract_reference:
+    register: Index Ventures companies (indexventures.com/companies/)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Boulevard
+    register_id: https://www.indexventures.com/companies/boulevard/
+    register_country: null
+    register_website: http://joinblvd.com
+    matched_domain: joinblvd.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    sector: business-applications
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 templates:
 - title: Add or update subscribers in Mailchimp when new clients are created in Boulevard
   url: https://zapier.com/apps/boulevard/integrations/mailchimp/824590/add-or-update-subscribers-in-mailchimp-when-new-clients-are-created-in-boulevard
