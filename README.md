@@ -1,4 +1,4 @@
-# Boulevard (boulevard)
+# Boulevard
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,197 +66,120 @@
 
 Boulevard is a client experience platform purpose-built for appointment-based self-care businesses - hair salons, spas, medspas, barbershops, and nail salons. The platform covers self-scheduling, CRM, marketing, payments (as a certified PayFac), and reporting. Boulevard exposes its integration surface as GraphQL - a Client API for building custom booking experiences and an Admin API for syncing business operations data (clients, appointments, staff, locations, memberships, gift cards) - plus a separate Tokenization API for PCI-scope-reducing card capture. API access is gated to the Enterprise tier and provisioned through a developer sandbox (business ID + API key) via the Boulevard Developer Portal.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/boulevard/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/boulevard/refs/heads/main/apis.yml)
+**Areas:** Salon Software · Spa Software · Med Spa · Appointment Scheduling · GraphQL · CRM · Payments · Self-Care · Scheduling
 
-## Tags
+## Boulevard on APIs.io
 
-- Salon Software
-- Spa Software
-- Med Spa
-- Appointment Scheduling
-- GraphQL
-- CRM
-- Payments
-- Self-Care
+Everything profiled for Boulevard is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/boulevard/](https://apis.io/providers/boulevard/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+- [Boulevard Admin API - Clients & CRM](https://apis.io/apis/boulevard/boulevard-admin-clients-crm-api/) — Query and mutate client (customer) records synced from Boulevard's CRM - profiles, contact details, custom fields, loyalty point balances, and appointment…
+- [Boulevard Admin API - Appointments, Staff & Locations](https://apis.io/apis/boulevard/boulevard-admin-appointments-scheduling-api/) — Read and sync appointment, staff, and location data across a business's calendar - past, current, and future appointments, professional rosters, and the…
+- [Boulevard Admin API - Memberships & Packages](https://apis.io/apis/boulevard/boulevard-admin-memberships-packages-api/) — Access recurring membership and prepaid package data - plan status, renewal state, and entitlements. Membership lifecycle changes are also pushed outbound…
+- [Boulevard Admin API - Payments, Gift Cards & Vouchers](https://apis.io/apis/boulevard/boulevard-admin-payments-gift-cards-api/) — Issue and manage stored-value gift cards, service vouchers, and account credit adjustments as a certified payment facilitator. Documented mutations include…
+- [Boulevard Client API - Booking Cart & Checkout](https://apis.io/apis/boulevard/boulevard-client-booking-cart-api/) — Build custom, on-brand self-booking experiences on top of a cart workflow - create a cart for a location, add a selected purchasable (service) item, reserve…
+- [Boulevard Client API - Catalog & Availability](https://apis.io/apis/boulevard/boulevard-client-catalog-availability-api/) — Public-facing catalog reads that power a booking widget before a client ever creates a cart - business and location lookup, bookable service categories,…
+- [Boulevard Tokenization API](https://apis.io/apis/boulevard/boulevard-tokenization-api/) — A narrow, non-GraphQL REST endpoint (`POST https://vault.blvd.co/cards/tokenize`, confirmed in the public `promotion-demo` reference client's source) used…
 
-## APIs
+### Published properties
 
-### Boulevard Admin API - Clients & CRM
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Query and mutate client (customer) records synced from Boulevard's CRM - profiles, contact details, custom fields, loyalty point balances, and appointment history. Third parties such as Klaviyo and Extole use this domain's `updateClient` mutation to write loyalty and referral state back into Boulevard.
+#### GraphQL (1)
 
-- **Human URL:** [https://developers.joinblvd.com/2020-01/admin-api/overview](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/admin`
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/boulevard/](https://apis.io/graphqls/boulevard/boulevard-graphql/)
 
-- Clients
-- CRM
-- Custom Fields
-- GraphQL
+#### Collections (1)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/authentication)
-- [API Reference](https://developers.joinblvd.com/graphql-admin-api/api-reference/types/Business)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Boulevard API](https://apis.io/collections/boulevard/open-boulevard/)
 
-### Boulevard Admin API - Appointments, Staff & Locations
+#### Security (1)
 
-Read and sync appointment, staff, and location data across a business's calendar - past, current, and future appointments, professional rosters, and the physical/virtual locations services are delivered from. Backs webhook-driven integrations that react to APPOINTMENT_CREATED, APPOINTMENT_CONFIRMED, and APPOINTMENT_COMPLETED events.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developers.joinblvd.com/2020-01/admin-api/overview](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/admin`
+- [Boulevard Domain Security](https://apis.io/security/boulevard/boulevard-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Appointments
-- Scheduling
-- Staff
-- Locations
-- GraphQL
+Published plans, tiers and prices.
 
-#### Properties
+- [Boulevard Plans Pricing](https://apis.io/plans/boulevard/boulevard-plans-pricing/)
 
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/authentication)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Boulevard Admin API - Memberships & Packages
+Published request limits.
 
-Access recurring membership and prepaid package data - plan status, renewal state, and entitlements. Membership lifecycle changes are also pushed outbound as MEMBERSHIP_CREATED, MEMBERSHIP_CANCELLED, and MEMBERSHIP_RENEWAL_SUCCEEDED webhook events, which downstream tools like Klaviyo consume for lifecycle marketing.
+- [Boulevard Rate Limits](https://apis.io/rate-limits/boulevard/boulevard-rate-limits/)
 
-- **Human URL:** [https://developers.joinblvd.com/2020-01/admin-api/overview](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/admin`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Memberships
-- Packages
-- Subscriptions
-- GraphQL
+- [Boulevard Finops](https://apis.io/finops/boulevard/boulevard-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Boulevard Admin API - Payments, Gift Cards & Vouchers
-
-Issue and manage stored-value gift cards, service vouchers, and account credit adjustments as a certified payment facilitator. Documented mutations include `CreateGiftCard`, `vouchersCreate`, and `createAccountCreditAdjustment`, used by referral/loyalty platforms (e.g. Extole) to fulfill rewards directly inside a business's Boulevard account.
-
-- **Human URL:** [https://developers.joinblvd.com/2020-01/admin-api/overview](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/admin`
-
-#### Tags
-
-- Payments
-- Gift Cards
-- Vouchers
-- Account Credit
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://developers.joinblvd.com/2020-01/admin-api/overview)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boulevard Client API - Booking Cart & Checkout
-
-Build custom, on-brand self-booking experiences on top of a cart workflow - create a cart for a location, add a selected purchasable (service) item, reserve an available timeslot, attach a tokenized card as the payment method, and check out. Confirmed mutations from the official `book-sdk` and `promotion-demo` reference clients include `CreateCart`, `AddCartSelectedPurchasableItem`, `AddCartCardPaymentMethod`, and `CheckoutCart`.
-
-- **Human URL:** [https://developers.joinblvd.com/2020-01/client-api/overview](https://developers.joinblvd.com/2020-01/client-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/client`
-
-#### Tags
-
-- Booking
-- Cart
-- Checkout
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://developers.joinblvd.com/2020-01/client-api/overview)
-- [Documentation](https://developers.joinblvd.com/2020-01/client-api/authentication)
-- [SDK](https://github.com/Boulevard/book-sdk)
-- [SDK](https://github.com/Boulevard/create-booking-flow)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boulevard Client API - Catalog & Availability
-
-Public-facing catalog reads that power a booking widget before a client ever creates a cart - business and location lookup, bookable service categories, staff/professional listings, and bookable dates/times for a chosen service and location. Mirrors the `book-sdk` modules `Businesses`, `Locations`, `Services`, `Staff`, and the cart's `getBookableDates` / `getBookableTimes` calls.
-
-- **Human URL:** [https://developers.joinblvd.com/2020-01/client-api/overview](https://developers.joinblvd.com/2020-01/client-api/overview)
-- **Base URL:** `https://dashboard.boulevard.io/api/2020-01/client`
-
-#### Tags
-
-- Services
-- Staff
-- Locations
-- Availability
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://developers.joinblvd.com/2020-01/client-api/overview)
-- [SDK](https://github.com/Boulevard/book-sdk)
-- [GraphQL](graphql/boulevard-graphql.md)
-- [GraphQL Schema](graphql/boulevard-schema.graphql)
-- [Postman Collection](collections/boulevard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boulevard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boulevard Tokenization API
-
-A narrow, non-GraphQL REST endpoint (`POST https://vault.blvd.co/cards/tokenize`, confirmed in the public `promotion-demo` reference client's source) used to exchange raw card details for a reusable payment token client-side, before that token is attached to a cart via the Client API's `AddCartCardPaymentMethod` mutation. Keeps merchant integrations out of PCI DSS scope by ensuring card numbers never transit the integrator's own servers.
-
-- **Human URL:** [https://developers.joinblvd.com/2020-01/tokenization-api/overview](https://developers.joinblvd.com/2020-01/tokenization-api/overview)
-- **Base URL:** `https://vault.blvd.co`
-
-#### Tags
-
-- Tokenization
-- PCI Compliance
-- Payments
-- REST
-
-#### Properties
-
-- [Documentation](https://developers.joinblvd.com/2020-01/tokenization-api/overview)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/Boulevard)
-- [LinkedIn](https://www.linkedin.com/company/boulevard)
 - [Website](https://www.joinblvd.com/)
 - [Documentation](https://developers.joinblvd.com/)
-- [Plans](plans/boulevard-plans-pricing.yml)
-- [Rate Limits](rate-limits/boulevard-rate-limits.yml)
-- [Fin Ops](finops/boulevard-finops.yml)
+- [Blog](https://www.joinblvd.com/blog)
+- [GitHub](https://github.com/Boulevard)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 11.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 7.9 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.4** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/boulevard/](https://apis.io/providers/boulevard/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Boulevard: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/boulevard/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
